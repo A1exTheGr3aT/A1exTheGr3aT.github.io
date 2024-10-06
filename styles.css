@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.planet-container {
+    text-align: center;
+}
+
+.planet img {
+    width: 300px; /* Adjust as needed */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.planet h1 {
+    color: white;
+    font-size: 2em;
+    margin-top: 20px;
+}
+
+/* Box around the coordinates and description */
+.info-box {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    color: white;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 10px;
+    width: 70%; /* Adjust box width */
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+}
+
+.info-box p {
+    margin: 10px 0;
+}
+#starChart {
+    max-width: 600px; /* Set a maximum width */
+    margin: 20px auto; /* Center the chart */
+    border: 1px solid #fff; /* Optional: add a border */
+}

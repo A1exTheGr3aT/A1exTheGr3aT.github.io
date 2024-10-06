@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxima Centauri b</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('images/indexbg.jpg');
+            background-size: cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin: 10px;
+        }
+
+        img {
+            max-width: 90%;
+            height: auto;
+            margin: 5px 0;
+        }
+
+        p {
+            max-width: 90%;
+            text-align: center;
+            padding: 5px;
+            font-size: 1rem;
+        }
+
+        .chart-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 400px;
+            text-align: center;
+        }
+
+        #starChart {
+            max-width: 100%;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Proxima Centauri b</h1>
+    <img src="images/proxima-centauri-b.jpg" alt="Proxima Centauri b">
+    <p><strong>Coordinates:</strong> RA 14h 29m 42.95s | Dec -62° 40′ 46.9″</p>
+    <p><strong>Exceptional Features:</strong> The closest known exoplanet to the Solar System, located just over 4 light-years away. It orbits in the habitable zone of its host star.</p>
+    
+    <div class="chart-container">
+        <h3>Star Chart</h3>
+        <canvas id="starChart"></canvas>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('starChart').getContext('2d');
+
+            const exoplanets = [
+                { name: "51 Pegasi b", ra: 22.9577, dec: 20.7688 },
+                { name: "HD 209458 b", ra: 22.0529, dec: 18.8843 },
+                { name: "Kepler-452b", ra: 19.7335, dec: 44.2777 },
+                { name: "Proxima Centauri b", ra: 14.4953, dec: -62.6795 },
+                { name: "TRAPPIST-1e", ra: 23.1076, dec: -5.0414 }
+            ];
+
+            const starChart = new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Exoplanets',
+                        data: exoplanets.map(planet => ({ x: planet.ra, y: planet.dec })),
+                        backgroundColor: 'rgba(255, 99, 132, 1)',
+                        pointRadius: 5,
+                        pointHoverRadius: 7
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Right Ascension (RA)'
+                            },
+                            min: 14,
+                            max: 24,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Declination (Dec)'
+                            },
+                            min: -70,
+                            max: 50,
+                            ticks: {
+                                stepSize: 10
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    const planet = exoplanets[tooltipItem.dataIndex];
+                                    return `${planet.name} (RA: ${planet.ra}, Dec: ${planet.dec})`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

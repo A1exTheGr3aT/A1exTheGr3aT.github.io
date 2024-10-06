@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploring Exoplanets</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('images/indexbg.jpg'); /* Background image */
+            background-size: cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh; /* Full viewport height */
+            text-align: center; /* Center text */
+        }
+
+        h1 {
+            font-size: 2.5rem; /* Title font size */
+            margin: 20px 0; /* Space around the title */
+        }
+
+        .planet-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
+            gap: 20px; /* Space between planets */
+            padding: 20px; /* Padding for the container */
+            max-width: 1200px; /* Limit container width */
+            width: 100%; /* Full width */
+            margin: auto; /* Center the grid */
+        }
+
+        .planet {
+            background: rgba(0, 0, 0, 0.6); /* Semi-transparent background for better readability */
+            border-radius: 10px; /* Rounded corners */
+            padding: 10px; /* Inner padding */
+            transition: transform 0.3s; /* Animation for hover effect */
+        }
+
+        .planet:hover {
+            transform: scale(1.05); /* Scale up on hover */
+        }
+
+        img {
+            max-width: 100%; /* Limit image width to fit container */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 10px; /* Rounded corners for images */
+        }
+
+        .tooltip {
+            display: none; /* Hide tooltips by default */
+        }
+
+        .planet:hover .tooltip {
+            display: block; /* Show tooltip on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Exploring Exoplanets</h1>
+    <div class="planet-container">
+        <div class="planet" id="planet1" data-name="51 Pegasi b" data-coordinates="RA: 22h 57m 27s, Dec: +20° 46′ 51″" data-description="The first exoplanet discovered orbiting a sun-like star.">
+            <img src="images/51-pegasi-b.jpg" alt="51 Pegasi b">
+            <span class="tooltip">51 Pegasi b</span>
+        </div>
+        <div class="planet" id="planet2" data-name="HD 209458 b" data-coordinates="RA: 22h 3m 10s, Dec: +18° 53′ 57″" data-description="A gas giant that transits its host star.">
+            <img src="images/hd-209458-b.jpg" alt="HD 209458 b">
+            <span class="tooltip">HD 209458 b</span>
+        </div>
+        <div class="planet" id="planet3" data-name="Kepler-452b" data-coordinates="RA: 19h 15m 22s, Dec: +44° 10′ 59″" data-description="An Earth-like exoplanet located in the habitable zone of its star.">
+            <img src="images/kepler-452b.jpg" alt="Kepler-452b">
+            <span class="tooltip">Kepler-452b</span>
+        </div>
+        <div class="planet" id="planet4" data-name="Proxima Centauri b" data-coordinates="RA: 14h 29m 42s, Dec: -62° 40′ 46″" data-description="The closest known exoplanet to the Solar System.">
+            <img src="images/proxima-centauri-b.jpg" alt="Proxima Centauri b">
+            <span class="tooltip">Proxima Centauri b</span>
+        </div>
+        <div class="planet" id="planet5" data-name="TRAPPIST-1e" data-coordinates="RA: 23h 10m 40s, Dec: -05° 09′ 33″" data-description="An Earth-sized exoplanet in the TRAPPIST-1 system that may support life.">
+            <img src="images/trappist-1e.jpg" alt="TRAPPIST-1e">
+            <span class="tooltip">TRAPPIST-1e</span>
+        </div>
+    </div>
+
+    <div class="info-panel" id="infoPanel">
+        <p id="planetName">Select a planet</p>
+        <p id="planetCoordinates"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

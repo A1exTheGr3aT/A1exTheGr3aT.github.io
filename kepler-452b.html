@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kepler-452b</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('images/indexbg.jpg'); /* Background image */
+            background-size: cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; /* Align items at the top */
+            height: 100vh; /* Full viewport height */
+            text-align: center; /* Center text */
+            overflow: hidden; /* Prevent overflow */
+        }
+
+        h1 {
+            font-size: 2rem; /* Title font size */
+            margin: 10px; /* Space around the title */
+        }
+
+        img {
+            max-width: 90%; /* Limit image width */
+            height: auto; /* Maintain aspect ratio */
+            margin: 5px 0; /* Reduced margin for closer spacing */
+        }
+
+        p {
+            max-width: 90%; /* Limit paragraph width */
+            text-align: center; /* Center align text */
+            padding: 5px; /* Reduced padding */
+            font-size: 1rem; /* Font size for the paragraph */
+        }
+
+        /* Star chart container */
+        .chart-container {
+            position: absolute;
+            top: 20px; /* Distance from the top */
+            right: 20px; /* Distance from the right */
+            width: 400px; /* Set a specific width for the chart */
+            text-align: center; /* Center the text inside */
+        }
+
+        #starChart {
+            max-width: 100%; /* Make the chart responsive */
+            height: 200px; /* Set height for the chart */
+        }
+    </style>
+</head>
+<body>
+    <h1>Kepler-452b</h1>
+    <img src="images/kepler-452b.jpg" alt="Kepler-452b">
+    <p><strong>Coordinates:</strong> RA 19h 44m 00.89s | Dec +44° 16′ 39.4″</p>
+    <p><strong>Exceptional Features:</strong> Often referred to as "Earth's cousin," Kepler-452b orbits a star similar to the Sun and is located in the habitable zone, where conditions might allow for liquid water. It's about 60% larger than Earth.</p>
+    
+    <!-- Star chart section -->
+    <div class="chart-container">
+        <h3>Star Chart</h3>
+        <canvas id="starChart"></canvas>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('starChart').getContext('2d');
+
+            const exoplanets = [
+                { name: "51 Pegasi b", ra: 22.9577, dec: 20.7688 },
+                { name: "HD 209458 b", ra: 22.0529, dec: 18.8843 },
+                { name: "Kepler-452b", ra: 19.7335, dec: 44.2777 },
+                { name: "Proxima Centauri b", ra: 14.4953, dec: -62.6795 },
+                { name: "TRAPPIST-1e", ra: 23.1076, dec: -5.0414 }
+            ];
+
+            const starChart = new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Exoplanets',
+                        data: exoplanets.map(planet => ({ x: planet.ra, y: planet.dec })),
+                        backgroundColor: 'rgba(255, 99, 132, 1)',
+                        pointRadius: 5,
+                        pointHoverRadius: 7
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Right Ascension (RA)'
+                            },
+                            min: 14,
+                            max: 24,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Declination (Dec)'
+                            },
+                            min: -70,
+                            max: 50,
+                            ticks: {
+                                stepSize: 10
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    const planet = exoplanets[tooltipItem.dataIndex];
+                                    return `${planet.name} (RA: ${planet.ra}, Dec: ${planet.dec})`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
